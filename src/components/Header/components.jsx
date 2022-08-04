@@ -10,7 +10,7 @@ export const Title = styled.h1`
 `
 
 export const A = styled(NavLink)`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   font-family: 'arial';
   color: #fff;

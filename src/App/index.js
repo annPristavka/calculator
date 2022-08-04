@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import {
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
-} from '../constants/index'
+} from '../constants/index' 
 
 import Loader from '../components/Loader/index'
 import { ContainerApp } from './components'
