@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom'
 import fontSizes from '../../theme'
 
 export const Title = styled.h1`
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 50;
   font-family: 'arial';
   letter-spacing: 0.3px;
 `
