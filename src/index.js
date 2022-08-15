@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { BrowserRouter } from 'react-router-dom'
 
-import Application from './App/index'
+import Application from './components/App/index'
 
 import GlobalStyles from './globalStyles'
 
