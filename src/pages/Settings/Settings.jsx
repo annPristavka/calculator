@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import ThemeContext from '../../context'
 import {
   SettingsDiv,
   Container,
@@ -7,11 +6,12 @@ import {
   Button,
   H3,
 } from './styled'
+import {theme} from '../../constants/themes'
 
-const Settings = () => {
-  const theme = useContext(ThemeContext)
-  const [value, setValue] = useState(theme[0].value)
-  console.log(value)
+
+
+const Settings = ({setValue, value}) => {
+  
   const handleChange = (e) => {
     setValue(e.target.value)
   }
@@ -21,7 +21,7 @@ const Settings = () => {
       <SettingsDiv>
         <H3>Settings</H3>
 
-        <Select value={value} onChange={handleChange}>
+        <Select onChange={handleChange}>
           {theme.map((item, index) => (
             <option key={item.id}>{item.value}</option>
           ))}

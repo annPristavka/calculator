@@ -5,11 +5,7 @@ export const CalcContainer = styled.div `
   grid-template-columns: 4fr 2fr;
   width: 100%;
   min-height: 500px;
-  background: linear-gradient(
-    90deg,
-    rgba(242, 242, 245, 1) 0%,
-    rgba(212, 212, 224, 0.29175420168067223) 51%,
-    rgba(232, 249, 252, 1) 100%
-  );
+  background-color: ${(props) =>
+    props.bg === 'Light Theme' ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors.secondaryLight};
   padding: 10px;
 `

@@ -5,14 +5,15 @@ import { BrowserRouter } from 'react-router-dom'
 
 import Application from './components/App/index'
 import GlobalStyles from './globalStyles'
-import ThemeContext, { theme } from './context'
+import theme from './theme'
+import { ThemeProvider } from 'styled-components'
 
 ReactDOM.render(
   <BrowserRouter>
-    <ThemeContext.Provider value={theme}>
+    <ThemeProvider theme={theme}>
       <Application />
       <GlobalStyles />
-    </ThemeContext.Provider>
+    </ThemeProvider>
   </BrowserRouter>,
   document.getElementById('root'),
 )

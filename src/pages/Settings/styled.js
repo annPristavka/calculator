@@ -1,11 +1,14 @@
 import styled from 'styled-components'
+import colors from '../../theme'
+
+
 
 export const Container = styled.div `
   min-height: 520px;
   width: 100%;
   padding: 10px;
   background-color: ${(props) =>
-    props.bg === 'Light Theme' ? 'white' : '#D3D3D3'};
+    props.bg === 'Light Theme' ? ({ theme }) => theme.colors.white : ({ theme }) => theme.colors.secondaryLight};
 `
 export const SettingsDiv = styled.div `
   display: flex;

@@ -4,9 +4,9 @@ import React from 'react'
 import Calculator from '../../components/Calculator/index'
 import { CalcContainer } from './styled'
 
-export default () => {
+export default ({value}) => {
   return (
-    <CalcContainer>
+    <CalcContainer bg={value}>
       <Calculator />
     </CalcContainer>
   )

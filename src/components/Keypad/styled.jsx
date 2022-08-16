@@ -21,12 +21,7 @@ export const Button = styled.button`
   border-radius: 5px;
   border: 2px solid grey;
   cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    rgba(212, 212, 215, 1) 0%,
-    rgba(212, 212, 224, 0.29175420168067223) 51%,
-    rgba(232, 249, 252, 1) 100%
-  );
+  
 `
 
 export const ButtonEq = styled.button`
@@ -42,10 +37,5 @@ export const ButtonEq = styled.button`
   border-radius: 5px;
   border: 2px solid grey;
   cursor: pointer;
-  background: linear-gradient(
-    90deg,
-    rgba(212, 212, 215, 1) 0%,
-    rgba(212, 212, 224, 0.29175420168067223) 51%,
-    rgba(232, 249, 252, 1) 100%
-  );
+
 `
