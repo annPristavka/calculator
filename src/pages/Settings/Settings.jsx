@@ -11,13 +11,13 @@ import {
 const Settings = () => {
   const theme = useContext(ThemeContext)
   const [value, setValue] = useState(theme[0].value)
-  // console.log(value)
+  console.log(value)
   const handleChange = (e) => {
     setValue(e.target.value)
   }
 
   return (
-    <Container value>
+    <Container bg={value}>
       <SettingsDiv>
         <H3>Settings</H3>
 
@@ -33,3 +33,5 @@ const Settings = () => {
 }
 
 export default Settings
+
+//  background-color: ${({ theme }) => theme.spaces[4]}px;
