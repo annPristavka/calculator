@@ -1,8 +1,8 @@
 import React from 'react'
-import Display from '../Display'
-import KeyPad from '../Keypad'
-import ControlPanel from '../ControlPanel'
-import History from '../History'
+import Display from '@Components/Display'
+import KeyPad from '@Components/Keypad'
+import ControlPanel from '@Components/ControlPanel'
+import History from '@Components/History'
 import { CalculatorDiv, HistoryDiv } from './styled'
 
 class CalculatorClass extends React.Component {

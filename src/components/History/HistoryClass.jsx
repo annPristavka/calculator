@@ -1,6 +1,6 @@
 import React from 'react'
 import { H3, Img } from './styled'
-import close from '../../assets/close.png'
+import close from '@/assets/close.png'
 
 class HistoryClass extends React.Component {
   render() {

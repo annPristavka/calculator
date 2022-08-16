@@ -4,20 +4,19 @@ import { Routes, Route } from 'react-router-dom'
 import {
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
-} from '../../constants/index'
+} from '@/constants/index'
 
-import Loader from '../Loader/index'
+import Loader from '@Components/Loader/index'
 import { ContainerApp } from './components'
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
-
+import ErrorBoundary from '@Components/ErrorBoundary/ErrorBoundary'
 
 const HomePage = lazy(() =>
-  import('../../pages/Home/index'),
+  import('@/pages/Home/index'),
 )
 
 const Header = lazy(() => import('../Header/index'))
 const Settings = lazy(() =>
-  import('../../pages/Settings/index'),
+  import('@/pages/Settings/index'),
 )
 
 const App = () => {

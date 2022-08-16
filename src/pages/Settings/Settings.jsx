@@ -6,7 +6,7 @@ import {
   Button,
   H3,
 } from './styled'
-import {theme} from '../../constants/themes'
+import {theme} from '@/constants/themes'
 
 
 

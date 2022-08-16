@@ -1,6 +1,6 @@
 import React from 'react'
 import { H3, Img } from './styled'
-import close from '../../assets/close.png'
+import close from '@/assets/close.png'
 
 const History = () => {
   return (

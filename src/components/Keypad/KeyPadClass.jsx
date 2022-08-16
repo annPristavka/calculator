@@ -1,5 +1,5 @@
 import React from 'react'
-import { button } from '../../constants/buttons'
+import { button } from '@/constants/buttons'
 import { Key, Button, ButtonEq } from './styled'
 
 class KeyPadClass extends React.Component {
