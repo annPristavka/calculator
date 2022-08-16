@@ -1,5 +1,4 @@
-import React from 'react'
+import Settings from './Settings'
+import SettingsClass from './SettingsClass'
 
-export default () => {
-  return <>fh</>
-}
+export { Settings as default, SettingsClass }

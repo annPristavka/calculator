@@ -1,7 +1,7 @@
 {
   "extends": ["standard", "standard-react", "prettier"],
   "plugins": ["prettier", "react-hooks", "cypress"],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "env": {
     "node": true,
     "browser": true,
@@ -9,7 +9,7 @@
     "cypress/globals": true
   },
   "rules": {
-    "arrow-parens": ["error", "as-needed"],
+    // "arrow-parens": ["error", "as-needed"],
     "semi": "error",
     "prefer-destructuring": "error",
     "max-len": [
@@ -35,7 +35,7 @@
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [".jsx"]
+        "extensions": [".jsx", ".js"]
       }
     ],
     "jsx-quotes": ["error", "prefer-double"],

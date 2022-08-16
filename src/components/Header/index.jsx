@@ -14,8 +14,10 @@ export default () => {
           <Title>Calculator App</Title>
         </div>
         <Nav>
-          <A to={HOME_PAGE_ROUTE}>Home</A>
-          <A to={SETTINGS_PAGE_ROUTE}>Settings</A>
+          <A to={HOME_PAGE_ROUTE}>Home(FC)</A>
+          <A to={SETTINGS_PAGE_ROUTE}>Settings(FC)</A>
+          <A to={HOME_PAGE_ROUTE}>Home(CC)</A>
+          <A to={SETTINGS_PAGE_ROUTE}>Settings(CC)</A>
         </Nav>
       </Container>
     </PageLayoutHeader>

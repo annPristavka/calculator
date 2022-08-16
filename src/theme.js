@@ -9,6 +9,12 @@ const error = '#c86464'
 const primary = '#c06c84'
 const secondary = '#6c5b7b'
 const secondaryLight = '#6a6b7b'
+const gradientWhite = `linear-gradient(
+  90deg,
+  rgba(242, 242, 245, 1) 0%,
+  rgba(212, 212, 224, 0.29175420168067223) 51%,
+  rgba(232, 249, 252, 1) 100%
+)`
 
 const boxShadows = [
     'box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.75)',
@@ -53,5 +59,6 @@ export default {
         black,
         white,
         error,
+        gradientWhite,
     },
 }

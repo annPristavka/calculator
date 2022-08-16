@@ -5,8 +5,8 @@ class ErrorBoundary extends React.Component {
     super(props)
     this.state = {
       error: false,
-      errorName: '',
-      errorInfo: '',
+      // errorName: '',
+      // errorInfo: '',
     }
   }
 
@@ -14,19 +14,20 @@ class ErrorBoundary extends React.Component {
     this.setState({ error: true })
   }
 
-  componentDidCatch(error, errorInfo) {
-    this.setState({
-      errorName: error,
-      errorInfo: errorInfo,
-    })
-  }
+  // componentDidCatch(error, errorInfo) {
+  //   this.setState({
+  //     errorName: error,
+  //     errorInfo: errorInfo,
+  //   })
+  // }
 
   render() {
     if (this.state.error) {
       return (
         <>
-          <h1>{this.state.errorName}</h1>
-          <h1>{this.state.errorInfo}</h1>
+          <h1>УПС</h1>
+          {/* <h1>{this.state.errorName}</h1>
+          <h1>{this.state.errorInfo}</h1> */}
         </>
       )
     }
