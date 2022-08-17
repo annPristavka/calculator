@@ -1,52 +1,52 @@
 export class Add {
-  constructor() {
+  constructor(x, y) {
     this.y = y
     this.x = x
   }
   execute() {
-    return y + x
+    return this.y + this.x
   }
 }
 
 export class Sub {
-  constructor() {
+  constructor(x, y) {
     this.y = y
     this.x = x
   }
 
   execute() {
-    return x - y
+    return this.x - this.y
   }
 }
 
 export class Mul {
-  constructor() {
+  constructor(x, y) {
     this.y = y
     this.x = x
   }
 
   execute() {
-    return x * y
+    return this.x * this.y
   }
 }
 
 export class Div {
-  constructor() {
+  constructor(x, y) {
     this.x = x
     this.y = y
   }
 
   execute() {
-    return x / y
+    return this.x / this.y
   }
 }
 
 export class ResDiv {
-  constructor() {
+  constructor(x, y) {
     this.x = x
     this.y = y
   }
   execute() {
-    return x % y
+    return this.x % this.y
   }
 }

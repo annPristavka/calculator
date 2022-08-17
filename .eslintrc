@@ -12,6 +12,7 @@
     // "arrow-parens": ["error", "as-needed"],
     "semi": "error",
     "prefer-destructuring": "error",
+    "react/jsx-first-prop-new-line": 1,
     "max-len": [
       "warn",
       {

@@ -4,6 +4,7 @@ import { Key, Button, ButtonEq } from './styled'
 
 class KeyPadClass extends React.Component {
   render() {
+    const { getSimbol } = this.props
     return (
       <Key>
         {button.map((item, index) =>

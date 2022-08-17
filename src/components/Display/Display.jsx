@@ -1,10 +1,13 @@
 import React from 'react'
-import { Input } from './styled'
+import { Input, P } from './styled'
 
-const Display = () => {
+const Display = ({ value, sign, express }) => {
   return (
     <>
-      <Input></Input>
+      <Input>
+        <P>{express}</P>
+        <P>{value}</P>
+      </Input>
     </>
   )
 }

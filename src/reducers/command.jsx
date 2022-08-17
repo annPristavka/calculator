@@ -1,18 +1,33 @@
-const ALL_HISTORY = 'GET_ALL_HISTORY'
+export const ADD = 'ADD'
+export const RESET = 'RESET'
 
 const initialState = {
-    history: []
+  history: [],
 }
 
-export const historyReducer = (state = initialState, action) => {
-    switch (action.type){
-        case ALL_HISTORY: 
-            return {...state, books: [...action.payload]}
+export const historyReducer = (
+  state = initialState,
+  action,
+) => {
+  switch (action.type) {
+    case ADD:
+      return {
+        ...state,
+        history: [...state.history, action.payload],
+      }
+    case RESET:
+      return { history: [] }
 
-        default:
-            return state;
-    }
-
+    default:
+      return state
+  }
 }
 
-export const allHistory = (payload) => ({type: ALL_HISTORY}, payload)
+export const allHistory = (payload) => ({
+  type: ADD,
+  payload,
+})
+export const resetHistory = (payload) => ({
+  type: RESET,
+  payload,
+})

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import example from './example'
+import { historyReducer } from './command.jsx'
 
 export const rootReducer = combineReducers({
-  example,
+    history: historyReducer,
 })

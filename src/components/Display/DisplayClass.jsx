@@ -3,9 +3,10 @@ import { Input } from './styled'
 
 class DisplayClass extends React.Component {
   render() {
+    const { value } = this.props
     return (
       <>
-        <Input></Input>
+        <Input>{value}</Input>
       </>
     )
   }

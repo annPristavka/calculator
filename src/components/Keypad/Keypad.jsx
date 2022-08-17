@@ -3,18 +3,18 @@ import { button } from '@/constants/buttons'
 
 import { Key, Button, ButtonEq } from './styled'
 
-const KeyPad = () => {
-  const getSimbol = (e) => {
-    console.log(e.target.innerHTML)
-  }
-
+const KeyPad = ({ getSimbol }) => {
   return (
-    <Key onClick={getSimbol}>
+    <Key>
       {button.map((item, index) =>
         item.id === 15 ? (
-          <ButtonEq key={item.id}>{item.value}</ButtonEq>
+          <ButtonEq key={item.id} onClick={getSimbol}>
+            {item.value}
+          </ButtonEq>
         ) : (
-          <Button key={item.id}>{item.value}</Button>
+          <Button key={item.id} onClick={getSimbol}>
+            {item.value}
+          </Button>
         ),
       )}
     </Key>
