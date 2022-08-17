@@ -7,16 +7,16 @@ import { CalculatorDiv, HistoryDiv } from './styled'
 import { getCommand } from '@/utils/calculations'
 import { useDispatch } from 'react-redux'
 import { allHistory } from '@/reducers/command'
+import { CalculatorC } from '@/utils/calculator'
 
 const Calculator = () => {
   const [sign, setSign] = useState('')
   const [currentNumber, setCurrentNumber] = useState(0)
   const [result, setResult] = useState(0)
   const [express, setExpress] = useState('')
-  const valueArray = []
   const dispatch = useDispatch()
 
-  console.log('express', express)
+  const calculator = new Calculator()
 
   const resetClickHandle = () => {
     setCurrentNumber(0)
@@ -37,7 +37,7 @@ const Calculator = () => {
 
   const allResetClickHandle = () => {
     setExpress('')
-    setCurrentNumber('')
+    setCurrentNumber(0)
   }
 
   const getSimbol = (e) => {
@@ -49,7 +49,7 @@ const Calculator = () => {
       case '/':
       case '*':
       case '%':
-        getCommand(value, [valueArray])
+        getCommand(value, [])
         // setCurrentNumber('')
         setSign(value)
         setExpress(express + value)
@@ -72,7 +72,6 @@ const Calculator = () => {
 
       default:
         buttonClickHandle(value)
-        valueArray.push(value)
         setExpress(express + value)
         setSign(null)
     }
