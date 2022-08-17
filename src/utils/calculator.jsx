@@ -1,13 +1,41 @@
+export interface Command {
+  execute(value: number): number;
+  undo(value: number): number
+}
+
 export class CalculatorC {
   constructor() {
-    this.current = 0
+    this.value = 0
+    this.history = []
   }
 
-  execute(command) {
-    this.current = command.execute()
+  execute(command : Command) {
+    this.history.push(command)
+    this.value = command.execute(this.value)
   }
 
-  reset() {
-    this.current = 0
+  undo() {
+    const command = this.history.pop()
+    if (command) {
+      this.value = command.undo(this.value)
+    }
+  }
+
+  setValue(value) {
+    this.value = value
+  }
+
+}
+
+ class Add implements Command{
+  constructor(x) {
+    this.x = +x
+  }
+
+  execute(currentValue) {
+    return currentValue + this.x
   }
 }
+
+export {Add}
+

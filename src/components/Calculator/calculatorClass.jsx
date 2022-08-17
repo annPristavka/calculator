@@ -6,14 +6,11 @@ import History from '@Components/History'
 import { CalculatorDiv, HistoryDiv } from './styled'
 
 class CalculatorClass extends React.Component {
-  getSimbol = (e) => {
-    console.log(e.target.innerHTML)
-  }
 
   render() {
     const { value } = this.props
     return (
-      <>
+      <React.Fragment>
         <CalculatorDiv>
           <Display value={value} />
           <KeyPad getSimbol={this.getSimbol} />
@@ -22,7 +19,7 @@ class CalculatorClass extends React.Component {
           <History />
           <ControlPanel />
         </HistoryDiv>
-      </>
+      </React.Fragment>
     )
   }
 }

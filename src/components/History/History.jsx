@@ -14,7 +14,6 @@ const History = () => {
     dispatch(resetHistory())
   }
 
-  console.log(history)
   return (
     <>
       <H3>History</H3>

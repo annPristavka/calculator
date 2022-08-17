@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import Display from '@Components/Display'
 import KeyPad from '@Components/Keypad'
 import ControlPanel from '@Components/ControlPanel'
@@ -7,7 +7,8 @@ import { CalculatorDiv, HistoryDiv } from './styled'
 import { getCommand } from '@/utils/calculations'
 import { useDispatch } from 'react-redux'
 import { allHistory } from '@/reducers/command'
-import { CalculatorC } from '@/utils/calculator'
+import { CalculatorC, Add } from '@/utils/calculator'
+import { MainOperators, Operators } from '@/constants/token'
 
 const Calculator = () => {
   const [sign, setSign] = useState('')
@@ -15,8 +16,10 @@ const Calculator = () => {
   const [result, setResult] = useState(0)
   const [express, setExpress] = useState('')
   const dispatch = useDispatch()
-
-  const calculator = new Calculator()
+  console.log("result", result)
+  console.log("sign", sign)
+  console.log("currentNumber", currentNumber)
+  const calculator = useMemo(() => new CalculatorC(), [])
 
   const resetClickHandle = () => {
     setCurrentNumber(0)
@@ -41,32 +44,33 @@ const Calculator = () => {
   }
 
   const getSimbol = (e) => {
-    console.log(e.target.innerHTML)
     const value = e.target.innerHTML
     switch (value) {
-      case '+':
-      case '-':
-      case '/':
-      case '*':
-      case '%':
-        getCommand(value, [])
+      case MainOperators.PLUS:
+      // case MainOperators.DIV:
+      // case MainOperators.MUL:
+      // case MainOperators.RESDIV:
+      // case MainOperators.MINUS:
         // setCurrentNumber('')
         setSign(value)
+        calculator.execute(new Add(currentNumber))
+        setResult(calculator.value)
         setExpress(express + value)
         break
-      case 'C':
+      case Operators.CLEAR:
         resetClickHandle(value)
         break
-      case '+-':
+      case Operators.OPPOSITE:
         oppositeSign()
         break
-      case '=':
+      case Operators.EQUAL:
         equalsClickHandler(value)
+        setCurrentNumber(result)
         break
-      case '.':
+      case Operators.COMMA:
         setCurrentNumber(currentNumber + value)
         break
-      case 'CE':
+      case Operators.CLEARALL:
         allResetClickHandle()
         break
 
@@ -78,7 +82,7 @@ const Calculator = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <CalculatorDiv>
         <Display
           value={currentNumber}
@@ -91,7 +95,7 @@ const Calculator = () => {
         <History />
         <ControlPanel />
       </HistoryDiv>
-    </>
+    </React.Fragment>
   )
 }
 

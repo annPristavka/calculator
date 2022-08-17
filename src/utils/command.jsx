@@ -1,12 +1,10 @@
-export class Add {
-  constructor(x, y) {
-    this.y = y
-    this.x = x
-  }
-  execute() {
-    return this.y + this.x
+export class Command {
+  constructor(execute){
+    this.execute = execute
   }
 }
+
+
 
 export class Sub {
   constructor(x, y) {
@@ -46,6 +44,7 @@ export class ResDiv {
     this.x = x
     this.y = y
   }
+
   execute() {
     return this.x % this.y
   }

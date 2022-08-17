@@ -1,4 +1,5 @@
-import { Add, Sub, Mul, Div, ResDiv } from './command'
+import {  Sub, Mul, Div, ResDiv } from './command'
+import {Add} from '@/utils/calculator'
 
 export const getCommand = (sign, digits) => {
   const [x, y] = digits
