@@ -6,12 +6,9 @@ import {
   Button,
   H3,
 } from './styled'
-import {theme} from '@/constants/themes'
+import { theme } from '@/constants/themes'
 
-
-
-const Settings = ({setValue, value}) => {
-  
+const Settings = ({ setValue, value }) => {
   const handleChange = (e) => {
     setValue(e.target.value)
   }
@@ -21,7 +18,7 @@ const Settings = ({setValue, value}) => {
       <SettingsDiv>
         <H3>Settings</H3>
 
-        <Select onChange={handleChange}>
+        <Select value={value} onChange={handleChange}>
           {theme.map((item, index) => (
             <option key={item.id}>{item.value}</option>
           ))}

@@ -3,6 +3,8 @@ import { Title, A, Container, Nav } from './components'
 import {
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
+  SETTINGS_PAGE_ROUTE_CLASS,
+  HOME_PAGE_ROUTE_CLASS,
 } from '@/constants/index'
 import { PageLayoutHeader } from '@/layouts/index'
 
@@ -16,8 +18,8 @@ export default () => {
         <Nav>
           <A to={HOME_PAGE_ROUTE}>Home(FC)</A>
           <A to={SETTINGS_PAGE_ROUTE}>Settings(FC)</A>
-          <A to={HOME_PAGE_ROUTE}>Home(CC)</A>
-          <A to={SETTINGS_PAGE_ROUTE}>Settings(CC)</A>
+          <A to={HOME_PAGE_ROUTE_CLASS}>Home(CC)</A>
+          <A to={SETTINGS_PAGE_ROUTE_CLASS}>Settings(CC)</A>
         </Nav>
       </Container>
     </PageLayoutHeader>

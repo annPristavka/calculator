@@ -14,17 +14,22 @@ const theme = [
 
 class SettingsClass extends React.Component {
   render() {
-    return (
-      <Container>
-        <SettingsDiv>
-          <H3>Settings</H3>
+    const { setValue, value } = this.props
 
-          <Select>
+    const handleChange = (e) => {
+      setValue(e.target.value)
+    }
+
+    return (
+      <Container bg={value}>
+        <SettingsDiv>
+          <H3> Settings </H3>
+          <Select value={value} onChange={handleChange}>
             {theme.map((item, index) => (
-              <option key={item.id}>{item.value}</option>
+              <option key={item.id}> {item.value} </option>
             ))}
           </Select>
-          <Button>Clear All History</Button>
+          <Button> Clear All History </Button>
         </SettingsDiv>
       </Container>
     )

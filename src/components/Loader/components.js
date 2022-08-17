@@ -5,4 +5,7 @@ export const Loader = styled(TailSpin)
 `
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
