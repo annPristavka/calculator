@@ -4,7 +4,7 @@ import colors from '../../theme'
 
 
 export const Container = styled.div `
-  min-height: 520px;
+  min-height: 542px;
   width: 100%;
   padding: 10px;
   background-color: ${(props) =>

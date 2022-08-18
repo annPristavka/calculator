@@ -17,37 +17,35 @@ const Calculator = () => {
   const [express, setExpress] = useState('')
   const dispatch = useDispatch()
 
-  console.log("currentNumber", currentNumber)
-  console.log("sign", sign)
-  console.log("result", result)
   const calculator = useMemo(() => new CalculatorC(), [])
 
   const resetClickHandle = () => {
     setCurrentNumber(0)
+
+    const pos = currentNumber.indexOf()
+    setExpress(express.slice(0, pos-1))
   }
 
   const buttonClickHandle = (value) => {
+     if(currentNumber === 0) setCurrentNumber('')
     if(String(currentNumber).includes('.')) {
       setCurrentNumber(currentNumber + value)
     }
-    else
-    setCurrentNumber(value)
+    else {setCurrentNumber(value)}   
+    setResult(0)
   }
 
   const oppositeSign = () => {
-    setCurrentNumber(-currentNumber)
+    setCurrentNumber((-1) * currentNumber)
+    setExpress((-1) * currentNumber)
   } 
 
-  const setRes = (e) => {
-    setResult(e)
-  }
-
   const equalsClickHandler = (value) => {
-    getResult(express, calculator, setResult)
-    dispatch(allHistory(express))
-    setExpress('')
-    setSign(null)
-    setCurrentNumber(0)
+      getResult(express, calculator, setResult)
+      dispatch(allHistory(express))
+      setExpress('')
+      setSign(null)
+      setCurrentNumber(0)
   }
 
   const allResetClickHandle = () => {
@@ -83,7 +81,7 @@ const Calculator = () => {
 
       case Operators.EQUAL:
         equalsClickHandler(value)
-        setCurrentNumber(result)
+        setCurrentNumber(result)        
         break
 
       case Operators.COMMA:
@@ -99,8 +97,9 @@ const Calculator = () => {
         break
 
       default:
-        buttonClickHandle(value)
-        setExpress(express + value)
+        if(currentNumber === 0) buttonClickHandle( value) 
+        else setCurrentNumber(currentNumber + value)
+        setExpress((express + value))
     }
   }
 
@@ -115,7 +114,10 @@ const Calculator = () => {
         <KeyPad getSimbol={getSimbol} />
       </CalculatorDiv>
       <HistoryDiv>
-        <History />
+        <History setExpress={setExpress} 
+                setCurrentNumber={setCurrentNumber} 
+                setResult={setResult}
+        />
         <ControlPanel />
       </HistoryDiv>
     </React.Fragment>

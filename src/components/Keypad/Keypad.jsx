@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { button } from '@/constants/buttons'
 
 import { Key, Button, ButtonEq } from './styled'
@@ -20,5 +21,7 @@ const KeyPad = ({ getSimbol }) => {
     </Key>
   )
 }
+
+KeyPad.propTypes = {getSimbol: PropTypes.func}
 
 export default KeyPad

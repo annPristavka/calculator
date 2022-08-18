@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Input, P } from './styled'
 
-const Display = ({ value, sign, express }) => {
+const Display = ({ value, express }) => {
 
   return (
     <>
@@ -11,6 +12,11 @@ const Display = ({ value, sign, express }) => {
       </Input>
     </>
   )
+}
+
+Display.propTypes = {
+  value: PropTypes.any,
+  express: PropTypes.any,
 }
 
 export default Display

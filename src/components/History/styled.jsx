@@ -15,10 +15,11 @@ export const Img = styled.img`
   height: 16px;
 `
 export const HistoryDiv = styled.div`
+  height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   font-size: 18px;
   overflow: auto;
+  
 `

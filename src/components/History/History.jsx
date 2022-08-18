@@ -2,18 +2,20 @@ import React from 'react'
 import { H3, Img, HistoryDiv } from './styled'
 import close from '@/assets/close.png'
 import { useSelector, useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 import { resetHistory } from '@/reducers/command'
 
-const History = () => {
+const History = ({setExpress, setCurrentNumber, setResult}) => {
   const dispatch = useDispatch()
   const history = useSelector(
     (store) => store.history.history,
   )
 
-  console.log("history", history)
-
   const clearHistory = () => {
     dispatch(resetHistory())
+    setExpress('')
+    setCurrentNumber(0)
+    setResult(0)
   }
 
   return (
@@ -28,5 +30,12 @@ const History = () => {
     </>
   )
 }
+
+History.propTypes = {
+  setExpress:PropTypes.func,
+  setCurrentNumber:PropTypes.func,
+  setResult:PropTypes.func,
+}
+
 
 export default History
