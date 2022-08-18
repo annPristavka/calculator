@@ -2,6 +2,7 @@ import React from 'react'
 import { Input, P } from './styled'
 
 const Display = ({ value, sign, express }) => {
+
   return (
     <>
       <Input>

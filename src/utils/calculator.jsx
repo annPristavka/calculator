@@ -9,9 +9,11 @@ export class CalculatorC {
     this.history = []
   }
 
-  execute(command : Command) {
+  executeCommand(command : Command) {
     this.history.push(command)
     this.value = command.execute(this.value)
+    console.log("HISTORY", this.history)
+    
   }
 
   undo() {
@@ -28,14 +30,61 @@ export class CalculatorC {
 }
 
  class Add implements Command{
-  constructor(x) {
+  constructor(x, y) {
     this.x = +x
+    this.y = +y
+    
   }
 
-  execute(currentValue) {
-    return currentValue + this.x
+  execute() {
+    return this.y + this.x
   }
 }
 
-export {Add}
+class Sub implements Command{
+  constructor(x, y) {
+    this.x = +x
+    this.y = +y
+  }
+
+  execute(x, y) {
+    return this.x - this.y
+  }
+}
+
+class Mul implements Command{
+  constructor(x, y) {
+    this.x = +x
+    this.y = +y
+  }
+
+  execute(x, y) {
+    return this.x * this.y
+  }
+}
+
+class Div implements Command{
+  constructor(x, y) {
+    this.x = +x
+    this.y = +y
+  }
+
+  execute(x, y) {
+    return this.x / this.y
+  }
+}
+
+class ResDiv implements Command{
+  constructor(x, y) {
+    this.x = +x
+    this.y = +y
+  }
+
+  execute(x, y) {
+    return this.x % this.y
+  }
+}
+
+
+export {Add, Sub, Mul, Div, ResDiv}
 

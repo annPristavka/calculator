@@ -10,6 +10,8 @@ const History = () => {
     (store) => store.history.history,
   )
 
+  console.log("history", history)
+
   const clearHistory = () => {
     dispatch(resetHistory())
   }

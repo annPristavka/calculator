@@ -4,11 +4,11 @@ import KeyPad from '@Components/Keypad'
 import ControlPanel from '@Components/ControlPanel'
 import History from '@Components/History'
 import { CalculatorDiv, HistoryDiv } from './styled'
-import { getCommand } from '@/utils/calculations'
 import { useDispatch } from 'react-redux'
 import { allHistory } from '@/reducers/command'
-import { CalculatorC, Add } from '@/utils/calculator'
+import { CalculatorC } from '@/utils/calculator'
 import { MainOperators, Operators } from '@/constants/token'
+import {getResult} from '@/utils/calculations'
 
 const Calculator = () => {
   const [sign, setSign] = useState('')
@@ -16,9 +16,10 @@ const Calculator = () => {
   const [result, setResult] = useState(0)
   const [express, setExpress] = useState('')
   const dispatch = useDispatch()
-  console.log("result", result)
-  console.log("sign", sign)
+
   console.log("currentNumber", currentNumber)
+  console.log("sign", sign)
+  console.log("result", result)
   const calculator = useMemo(() => new CalculatorC(), [])
 
   const resetClickHandle = () => {
@@ -26,50 +27,73 @@ const Calculator = () => {
   }
 
   const buttonClickHandle = (value) => {
+    if(String(currentNumber).includes('.')) {
+      setCurrentNumber(currentNumber + value)
+    }
+    else
     setCurrentNumber(value)
   }
 
   const oppositeSign = () => {
     setCurrentNumber(-currentNumber)
+  } 
+
+  const setRes = (e) => {
+    setResult(e)
   }
 
   const equalsClickHandler = (value) => {
+    getResult(express, calculator, setResult)
     dispatch(allHistory(express))
     setExpress('')
+    setSign(null)
+    setCurrentNumber(0)
   }
 
   const allResetClickHandle = () => {
     setExpress('')
     setCurrentNumber(0)
+    setResult(0)
   }
 
   const getSimbol = (e) => {
     const value = e.target.innerHTML
+  
     switch (value) {
       case MainOperators.PLUS:
-      // case MainOperators.DIV:
-      // case MainOperators.MUL:
-      // case MainOperators.RESDIV:
-      // case MainOperators.MINUS:
-        // setCurrentNumber('')
+      case MainOperators.DIV:
+      case MainOperators.MUL:
+      case MainOperators.RESDIV:
+      case MainOperators.MINUS:
         setSign(value)
-        calculator.execute(new Add(currentNumber))
-        setResult(calculator.value)
-        setExpress(express + value)
+        setExpress(express + ' ' +value + ' ')
+        setCurrentNumber(0)
+        if((currentNumber) === 0) {
+          setExpress('0' + ' ' +value + ' ')   
+        }
         break
+
       case Operators.CLEAR:
         resetClickHandle(value)
         break
+
       case Operators.OPPOSITE:
         oppositeSign()
         break
+
       case Operators.EQUAL:
         equalsClickHandler(value)
         setCurrentNumber(result)
         break
+
       case Operators.COMMA:
-        setCurrentNumber(currentNumber + value)
+        setExpress(express + value)
+        if((currentNumber) === 0) {
+          setExpress('0' + value)   
+        } 
+          setCurrentNumber(currentNumber + value)
         break
+
       case Operators.CLEARALL:
         allResetClickHandle()
         break
@@ -77,7 +101,6 @@ const Calculator = () => {
       default:
         buttonClickHandle(value)
         setExpress(express + value)
-        setSign(null)
     }
   }
 
@@ -85,7 +108,7 @@ const Calculator = () => {
     <React.Fragment>
       <CalculatorDiv>
         <Display
-          value={currentNumber}
+          value={currentNumber || result}
           sign={sign}
           express={express}
         />
