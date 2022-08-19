@@ -1,39 +1,34 @@
-export interface Command {
-  execute(value: number): number;
-  undo(value: number): number
+export class Command {
+  execute(value){}
 }
 
 export class CalculatorC {
   constructor() {
-    this.value = 0
+    this.current = 0
     this.history = []
   }
 
-  executeCommand(command : Command) {
-    this.history.push(command)
-    this.value = command.execute(this.value)
+  executeCommand(command) {
     console.log("HISTORY", this.history)
-    
+    this.history.push(command)
+    this.current = command.execute(this.current)
   }
 
-  undo() {
-    const command = this.history.pop()
-    if (command) {
-      this.value = command.undo(this.value)
-    }
+  getCurrent(){
+    return this.current
   }
 
   setValue(value) {
-    this.value = value
+    this.current = value
   }
 
 }
 
- class Add implements Command{
+ class Add extends Command{
   constructor(x, y) {
+    super()
     this.x = +x
     this.y = +y
-    
   }
 
   execute() {
@@ -41,46 +36,50 @@ export class CalculatorC {
   }
 }
 
-class Sub implements Command{
+class Sub extends Command{
   constructor(x, y) {
+    super()
     this.x = +x
     this.y = +y
   }
 
-  execute(x, y) {
+  execute() {
     return this.x - this.y
   }
 }
 
-class Mul implements Command{
+class Mul extends Command{
   constructor(x, y) {
+    super()
     this.x = +x
     this.y = +y
   }
 
-  execute(x, y) {
+  execute() {
     return this.x * this.y
   }
 }
 
-class Div implements Command{
+class Div extends Command{
   constructor(x, y) {
+    super()
     this.x = +x
     this.y = +y
   }
 
-  execute(x, y) {
+  execute() {
     return this.x / this.y
   }
 }
 
-class ResDiv implements Command{
+class ResDiv extends Command{
   constructor(x, y) {
+    super()
     this.x = +x
     this.y = +y
   }
 
-  execute(x, y) {
+  execute() {
     return this.x % this.y
   }
 }

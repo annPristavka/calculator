@@ -15,23 +15,19 @@ const Calculator = () => {
   const [currentNumber, setCurrentNumber] = useState(0)
   const [result, setResult] = useState(0)
   const [express, setExpress] = useState('')
+  
   const dispatch = useDispatch()
-
   const calculator = useMemo(() => new CalculatorC(), [])
 
   const resetClickHandle = () => {
     setCurrentNumber(0)
-
-    const pos = currentNumber.indexOf()
-    setExpress(express.slice(0, pos-1))
+    setExpress(express.slice(0, currentNumber.indexOf()-1))
   }
 
   const buttonClickHandle = (value) => {
-     if(currentNumber === 0) setCurrentNumber('')
-    if(String(currentNumber).includes('.')) {
-      setCurrentNumber(currentNumber + value)
-    }
-    else {setCurrentNumber(value)}   
+    if(currentNumber === 0) setCurrentNumber('')
+    String(currentNumber).includes('.') ? setCurrentNumber(currentNumber + value)
+                                        : setCurrentNumber(value) 
     setResult(0)
   }
 
@@ -40,12 +36,12 @@ const Calculator = () => {
     setExpress((-1) * currentNumber)
   } 
 
-  const equalsClickHandler = (value) => {
-      getResult(express, calculator, setResult)
-      dispatch(allHistory(express))
-      setExpress('')
-      setSign(null)
-      setCurrentNumber(0)
+  const equalsClickHandler = () => {
+    getResult(express, calculator, setResult)
+    dispatch(allHistory(express))
+    setExpress('')
+    setSign(null)
+    setCurrentNumber(0)
   }
 
   const allResetClickHandle = () => {
@@ -66,9 +62,8 @@ const Calculator = () => {
         setSign(value)
         setExpress(express + ' ' +value + ' ')
         setCurrentNumber(0)
-        if((currentNumber) === 0) {
+        if((currentNumber) === 0) 
           setExpress('0' + ' ' +value + ' ')   
-        }
         break
 
       case Operators.CLEAR:
@@ -86,10 +81,7 @@ const Calculator = () => {
 
       case Operators.COMMA:
         setExpress(express + value)
-        if((currentNumber) === 0) {
-          setExpress('0' + value)   
-        } 
-          setCurrentNumber(currentNumber + value)
+        (currentNumber) === 0 ? setExpress('0' + value) : setCurrentNumber(currentNumber + value)
         break
 
       case Operators.CLEARALL:
@@ -97,8 +89,7 @@ const Calculator = () => {
         break
 
       default:
-        if(currentNumber === 0) buttonClickHandle( value) 
-        else setCurrentNumber(currentNumber + value)
+        currentNumber === 0 ? buttonClickHandle(value) : setCurrentNumber(currentNumber + value)
         setExpress((express + value))
     }
   }
@@ -114,9 +105,10 @@ const Calculator = () => {
         <KeyPad getSimbol={getSimbol} />
       </CalculatorDiv>
       <HistoryDiv>
-        <History setExpress={setExpress} 
-                setCurrentNumber={setCurrentNumber} 
-                setResult={setResult}
+        <History 
+            setExpress={setExpress} 
+            setCurrentNumber={setCurrentNumber} 
+            setResult={setResult}
         />
         <ControlPanel />
       </HistoryDiv>
