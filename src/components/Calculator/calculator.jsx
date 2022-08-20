@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import Display from '@Components/Display'
 import KeyPad from '@Components/Keypad'
 import ControlPanel from '@Components/ControlPanel'
@@ -15,7 +15,13 @@ const Calculator = () => {
   const [currentNumber, setCurrentNumber] = useState(0)
   const [result, setResult] = useState(0)
   const [express, setExpress] = useState('')
-  
+  const [expressArr, setExpressArr] = useState('')
+
+  console.log('sign', sign)
+  console.log('expressAtt', (expressArr))
+  console.log('currentNumber', (currentNumber))
+  console.log('result', (result))
+
   const dispatch = useDispatch()
   const calculator = useMemo(() => new CalculatorC(), [])
 
@@ -26,6 +32,7 @@ const Calculator = () => {
 
   const buttonClickHandle = (value) => {
     if(currentNumber === 0) setCurrentNumber('')
+    setExpressArr([... expressArr, value])
     String(currentNumber).includes('.') ? setCurrentNumber(currentNumber + value)
                                         : setCurrentNumber(value) 
     setResult(0)
@@ -37,7 +44,7 @@ const Calculator = () => {
   } 
 
   const equalsClickHandler = () => {
-    getResult(express, calculator, setResult)
+  
     dispatch(allHistory(express))
     setExpress('')
     setSign(null)
@@ -60,6 +67,7 @@ const Calculator = () => {
       case MainOperators.RESDIV:
       case MainOperators.MINUS:
         setSign(value)
+        setExpressArr([... expressArr, value])
         setExpress(express + ' ' +value + ' ')
         setCurrentNumber(0)
         if((currentNumber) === 0) 
@@ -80,8 +88,14 @@ const Calculator = () => {
         break
 
       case Operators.COMMA:
-        setExpress(express + value)
-        (currentNumber) === 0 ? setExpress('0' + value) : setCurrentNumber(currentNumber + value)
+       
+        if(currentNumber === 0) setExpress('0' + value)
+        else{
+          setCurrentNumber(currentNumber + String(value)) 
+          setExpress(express + String(value))
+        }
+        
+        console.log(currentNumber)
         break
 
       case Operators.CLEARALL:
@@ -93,6 +107,20 @@ const Calculator = () => {
         setExpress((express + value))
     }
   }
+
+  useEffect( () => {
+      if(expressArr.length === 3) {
+        getResult(expressArr, calculator, setResult)
+        setExpressArr([])
+        setCurrentNumber(result)
+      } else
+      if(expressArr.length === 0) {
+      
+        setCurrentNumber(result)
+        setExpressArr([...expressArr, result].slice(1))
+      }
+    }, [expressArr.length === 3],
+  )
 
   return (
     <React.Fragment>

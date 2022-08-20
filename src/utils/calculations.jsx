@@ -1,35 +1,15 @@
 import {Add,  Sub, Mul, Div, ResDiv} from '@/utils/calculator'
-import { MainOperators, Operators } from '@/constants/token'
+import { MainOperators } from '@/constants/token'
 
 
 export const getResult = (express, calculator, setResult) => {
-
-  let expressPart = ''
-  const array = express.split(' ')
-  const signs = array.filter((item) => item === '+' || item === '-' || item === '*' || item === '/')
-  let current = 0
-
-  const getCurrentNumber = () => {
-    expressPart += express.slice(0, 5)
-    current = estimation(calculator, setResult, expressPart)
-    expressPart = express.slice(5)
-  }
-
-  const getCurrentOrResultNumber = () => {
-    current = estimation(calculator, setResult, current + expressPart.slice(0,4))
-  }
-
-  for(let i=0; i<signs.length; i++){
-    expressPart === '' ?  getCurrentNumber() :  getCurrentOrResultNumber()
-    setResult(current)
-  }
+  estimation(calculator, express)
+  setResult(calculator.current)
 }
 
-const estimation = (calculator, setResult, array) => {
+const estimation = (calculator, array) => {
 
-  array = array.split(' ')
   const [num1, sign, num2] = array
-  console.log('array', array)
   
   switch(sign){
     case(MainOperators.PLUS):
@@ -42,7 +22,6 @@ const estimation = (calculator, setResult, array) => {
 
     case(MainOperators.MUL):
       calculator.executeCommand(new Mul(num1, num2))
-      console.log('calculator.value', calculator.value)
       return  (calculator.current)
 
     case(MainOperators.DIV):

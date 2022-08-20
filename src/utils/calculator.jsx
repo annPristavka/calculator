@@ -9,9 +9,9 @@ export class CalculatorC {
   }
 
   executeCommand(command) {
-    console.log("HISTORY", this.history)
     this.history.push(command)
     this.current = command.execute(this.current)
+    console.log("HISTORY", this.history)
   }
 
   getCurrent(){
@@ -31,7 +31,10 @@ export class CalculatorC {
     this.y = +y
   }
 
+  
+
   execute() {
+    console.log('hello', typeof(this.x), typeof(this.y))
     return this.y + this.x
   }
 }
