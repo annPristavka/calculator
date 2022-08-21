@@ -5,6 +5,7 @@ import { MainOperators } from '@/constants/token'
 export const getResult = (express, calculator, setResult) => {
   estimation(calculator, express)
   setResult(calculator.current)
+  return (calculator.current)
 }
 
 const estimation = (calculator, array) => {

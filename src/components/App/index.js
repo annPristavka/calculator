@@ -26,6 +26,7 @@ const Settings = lazy(() =>
 
 const App = () => {
   const [value, setValue] = useState('Light Theme')
+  const [historyShow, setHistoryShow] = useState(true)
   return (
     <ErrorBoundary>
       <ContainerApp>
@@ -35,13 +36,20 @@ const App = () => {
             <Route
               exact
               path={HOME_PAGE_ROUTE}
-              element={<HomePage value={value} />}>
+              element={<HomePage value={value} 
+                                  historyShow={historyShow} 
+                                  setHistoryShow={setHistoryShow}
+                        />}>
               {' '}
             </Route>{' '}
             <Route
               exact
               path={HOME_PAGE_ROUTE_CLASS}
-              element={<HomeClass value={value} />}>
+              element={<HomeClass 
+                          value={value} 
+                          historyShow={historyShow} 
+                          setHistoryShow={setHistoryShow}
+                        />}>
               {' '}
             </Route>{' '}
             <Route

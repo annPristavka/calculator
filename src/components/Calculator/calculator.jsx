@@ -10,17 +10,17 @@ import { CalculatorC } from '@/utils/calculator'
 import { MainOperators, Operators } from '@/constants/token'
 import {getResult} from '@/utils/calculations'
 
-const Calculator = () => {
+const Calculator = ({historyShow, setHistoryShow}) => {
   const [sign, setSign] = useState('')
   const [currentNumber, setCurrentNumber] = useState(0)
   const [result, setResult] = useState(0)
   const [express, setExpress] = useState('')
   const [expressArr, setExpressArr] = useState('')
+  
 
-  console.log('sign', sign)
-  console.log('expressAtt', (expressArr))
+  console.log('expressAttM', (expressArr))
   console.log('currentNumber', (currentNumber))
-  console.log('result', (result))
+  console.log('historyShow', (historyShow))
 
   const dispatch = useDispatch()
   const calculator = useMemo(() => new CalculatorC(), [])
@@ -35,7 +35,6 @@ const Calculator = () => {
     setExpressArr([... expressArr, value])
     String(currentNumber).includes('.') ? setCurrentNumber(currentNumber + value)
                                         : setCurrentNumber(value) 
-    setResult(0)
   }
 
   const oppositeSign = () => {
@@ -110,21 +109,22 @@ const Calculator = () => {
 
   useEffect( () => {
       if(expressArr.length === 3) {
-        getResult(expressArr, calculator, setResult)
-        setExpressArr([])
-        setCurrentNumber(result)
-      } else
-      if(expressArr.length === 0) {
-      
-        setCurrentNumber(result)
-        setExpressArr([...expressArr, result].slice(1))
-      }
-    }, [expressArr.length === 3],
+        const v = getResult(expressArr, calculator, setResult)
+        setExpressArr([v])
+        setCurrentNumber(v)
+
+        console.log('sign', sign)
+        console.log('expressAtt', (expressArr))
+        console.log('currentNumber', (currentNumber))
+        console.log('result', (result))
+        console.log('v', (v))
+      } 
+    }, [currentNumber],
   )
 
   return (
     <React.Fragment>
-      <CalculatorDiv>
+      <CalculatorDiv className={historyShow ? '' : 'active'}>
         <Display
           value={currentNumber || result}
           sign={sign}
@@ -132,13 +132,13 @@ const Calculator = () => {
         />
         <KeyPad getSimbol={getSimbol} />
       </CalculatorDiv>
-      <HistoryDiv>
-        <History 
+      <HistoryDiv className={historyShow ? '' : 'active'}>
+        {historyShow && <History 
             setExpress={setExpress} 
             setCurrentNumber={setCurrentNumber} 
             setResult={setResult}
-        />
-        <ControlPanel />
+        />}
+        <ControlPanel setHistoryShow={setHistoryShow}  className={historyShow ? '' : 'active'}/>
       </HistoryDiv>
     </React.Fragment>
   )

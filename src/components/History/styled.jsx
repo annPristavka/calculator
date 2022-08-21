@@ -21,5 +21,8 @@ export const HistoryDiv = styled.div`
   align-items: center;
   font-size: 18px;
   overflow: auto;
+  &.active {
+    width: 0%;
+  }
   
 `
