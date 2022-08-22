@@ -41,7 +41,6 @@ const Calculator = ({historyShow, setHistoryShow}) => {
     }
     String(currentNumber).includes('.') ? setCurrentNumber(currentNumber + value)
                                         : setCurrentNumber(value) 
-      
     }
 
   const oppositeSign = () => {
@@ -50,7 +49,6 @@ const Calculator = ({historyShow, setHistoryShow}) => {
   } 
 
   const equalsClickHandler = () => {
-  
     dispatch(allHistory(express))
     setExpress('')
     setSign(null)
