@@ -27,9 +27,13 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
 
   const resetClickHandle = () => {
     setCurrentNumber(0)
+    console.log('currentNumber', currentNumber)
     setExpress(
-      express.slice(0, currentNumber.indexOf() - 1),
+      express.slice(0, String(currentNumber).indexOf() - 1),
     )
+    setExpressArr([...expressArr.slice(0, 2)])
+    setCurrentNumber(0)
+    setResult(0)
   }
 
   const buttonClickHandle = (value) => {
@@ -61,6 +65,7 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
     setExpress('')
     setCurrentNumber(0)
     setResult(0)
+    setExpressArr([])
   }
 
   const getSimbol = (e) => {
