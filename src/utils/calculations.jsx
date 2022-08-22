@@ -34,6 +34,6 @@ const estimation = (calculator, array) => {
       return  (calculator.current)
 
     default:
-      console.log("Hello")
+      console.log("")
   }
 }
