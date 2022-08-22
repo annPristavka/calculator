@@ -21,6 +21,7 @@ const Calculator = ({historyShow, setHistoryShow}) => {
   console.log('expressAttM', (expressArr))
   console.log('currentNumber', (currentNumber))
   console.log('historyShow', (historyShow))
+  console.log('sign', (sign))
 
   const dispatch = useDispatch()
   const calculator = useMemo(() => new CalculatorC(), [])
@@ -32,10 +33,16 @@ const Calculator = ({historyShow, setHistoryShow}) => {
 
   const buttonClickHandle = (value) => {
     if(currentNumber === 0) setCurrentNumber('')
-    setExpressArr([... expressArr, value])
+   
+    if(expressArr.length === 3) {
+      setExpressArr([...expressArr[2] + value])
+    } else {
+      setExpressArr([...expressArr, value])
+    }
     String(currentNumber).includes('.') ? setCurrentNumber(currentNumber + value)
                                         : setCurrentNumber(value) 
-  }
+      
+    }
 
   const oppositeSign = () => {
     setCurrentNumber((-1) * currentNumber)
@@ -67,6 +74,7 @@ const Calculator = ({historyShow, setHistoryShow}) => {
       case MainOperators.MINUS:
         setSign(value)
         setExpressArr([... expressArr, value])
+        
         setExpress(express + ' ' +value + ' ')
         setCurrentNumber(0)
         if((currentNumber) === 0) 
@@ -83,7 +91,8 @@ const Calculator = ({historyShow, setHistoryShow}) => {
 
       case Operators.EQUAL:
         equalsClickHandler(value)
-        setCurrentNumber(result)        
+        setCurrentNumber(result)       
+        
         break
 
       case Operators.COMMA:
@@ -104,22 +113,26 @@ const Calculator = ({historyShow, setHistoryShow}) => {
       default:
         currentNumber === 0 ? buttonClickHandle(value) : setCurrentNumber(currentNumber + value)
         setExpress((express + value))
+
+        if(sign !== '' && currentNumber === 0) setExpressArr([...expressArr, value])
+        else
+          setExpressArr([expressArr+value])
     }
   }
 
   useEffect( () => {
       if(expressArr.length === 3) {
-        const v = getResult(expressArr, calculator, setResult)
-        setExpressArr([v])
-        setCurrentNumber(v)
-
+        const resultOperation = getResult(expressArr, calculator, setResult)
+        setExpressArr([resultOperation])
+        setCurrentNumber(resultOperation)
         console.log('sign', sign)
         console.log('expressAtt', (expressArr))
         console.log('currentNumber', (currentNumber))
+        
         console.log('result', (result))
-        console.log('v', (v))
+        console.log('resultOperation', (resultOperation))
       } 
-    }, [currentNumber],
+    }, [currentNumber, result],
   )
 
   return (
