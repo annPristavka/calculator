@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const H3 = styled.h3`
   text-align: center;
   font-weight: 400;
-  //   font-size: 18px;
 `
 
 export const Img = styled.img`

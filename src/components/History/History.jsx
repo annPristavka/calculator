@@ -19,7 +19,7 @@ const History = ({setExpress, setCurrentNumber, setResult}) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <H3>History</H3>
       <Img src={close} onClick={clearHistory} />
       <HistoryDiv>
@@ -27,7 +27,7 @@ const History = ({setExpress, setCurrentNumber, setResult}) => {
           <p key={index}>{item}</p>
         ))}
       </HistoryDiv>
-    </>
+    </React.Fragment>
   )
 }
 

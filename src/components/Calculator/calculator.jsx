@@ -27,7 +27,6 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
 
   const resetClickHandle = () => {
     setCurrentNumber(0)
-    console.log('currentNumber', currentNumber)
     setExpress(
       express.slice(0, String(currentNumber).indexOf() - 1),
     )
@@ -39,19 +38,29 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
   const buttonClickHandle = (value) => {
     if (currentNumber === 0) setCurrentNumber('')
 
-    if (expressArr.length === 3) {
-      setExpressArr([...(expressArr[2] + value)])
-    } else {
-      setExpressArr([...expressArr, value])
-    }
+    expressArr.length === 3
+      ?  setExpressArr([...(expressArr[2] + value)])
+      :  setExpressArr([...expressArr, value])
+    
     String(currentNumber).includes('.')
       ? setCurrentNumber(currentNumber + value)
       : setCurrentNumber(value)
   }
 
   const oppositeSign = () => {
+    if(expressArr.length === 1) setExpressArr([express * (-1)])
+    if(expressArr.length === 3) {
+      setExpressArr([...expressArr.slice(0,2),  -1 * expressArr[2]])
+      if(express.split(' ')[1] === '+')
+        setExpress(express.replace(express.split(' ')[1], '-'))
+        else {
+          setExpress(express.replace(express.split(' ')[1], '+'))
+        }
+    }else{
+      setExpress(-1 * currentNumber)
+    }
     setCurrentNumber(-1 * currentNumber)
-    setExpress(-1 * currentNumber)
+   
   }
 
   const equalsClickHandler = () => {
@@ -77,17 +86,13 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
       case MainOperators.MUL:
       case MainOperators.RESDIV:
       case MainOperators.MINUS:
-        if (
+        (
           String(expressArr).includes(sign) &&
           expressArr.length === 3
-        ) {
-          setExpressArr([currentNumber, value])
-        } else {
-          setExpressArr([...expressArr, value])
-        }
-
+        ) 
+        ?  setExpressArr([currentNumber, value])
+        :  setExpressArr([...expressArr, value])
         setSign(value)
-
         setResult(0)
         setExpress(express + ' ' + value + ' ')
         setCurrentNumber(0)
@@ -113,9 +118,11 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
         else {
           setCurrentNumber(currentNumber + String(value))
           setExpress(express + String(value))
+          if(expressArr.length === 1){
+            setExpressArr([expressArr+value])
+          }else
+          setExpressArr([...expressArr.slice(0,2), expressArr[expressArr.length-1]+value])
         }
-
-        console.log(currentNumber)
         break
 
       case Operators.CLEARALL:
@@ -147,7 +154,7 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
     }
   }
 
-  useEffect(() => {
+  const getResultExpression = () => {
     if (
       String(expressArr[2]).split('').length > 1 &&
       expressArr.length > 2
@@ -158,7 +165,6 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
         setResult,
       )
       setCurrentNumber(result)
-      console.log('RESULTOPERATION', resultOperation)
     } else if (expressArr.length === 3) {
       const resultOperation = getResult(
         expressArr,
@@ -167,7 +173,10 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
       )
       setCurrentNumber(resultOperation)
     }
-    console.log('expressAttType', typeof expressArr)
+  }
+
+  useEffect(() => {
+    getResultExpression()
   }, [expressArr, currentNumber])
 
   return (
@@ -191,7 +200,6 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
         )}
         <ControlPanel
           setHistoryShow={setHistoryShow}
-          className={historyShow ? '' : 'active'}
         />
       </HistoryDiv>
     </React.Fragment>

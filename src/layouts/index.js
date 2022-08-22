@@ -9,7 +9,6 @@ export const PageLayout = styled.div `
 
 export const PageLayoutHeader = styled.div `
   width: 100%;
-
   max-width: 1000px;
   grid: 0 auto;
 `

@@ -31,8 +31,6 @@ export class CalculatorC {
     this.y = +y
   }
 
-  
-
   execute() {
     console.log('hello', typeof(this.x), typeof(this.y))
     return this.y + this.x

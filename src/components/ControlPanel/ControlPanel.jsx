@@ -7,9 +7,9 @@ const ControlPanel = ({setHistoryShow}) => {
     setHistoryShow(prev => !prev)
   }
   return (
-    <>
+    <React.Fragment>
       <Button className="control" onClick={handleHistory}>></Button>
-    </>
+    </React.Fragment>
   )
 }
 

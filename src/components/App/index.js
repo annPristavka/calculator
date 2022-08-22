@@ -36,12 +36,12 @@ const App = () => {
             <Route
               exact
               path={HOME_PAGE_ROUTE}
-              element={<HomePage value={value} 
-                                  historyShow={historyShow} 
-                                  setHistoryShow={setHistoryShow}
+              element={<HomePage 
+                          value={value} 
+                          historyShow={historyShow} 
+                          setHistoryShow={setHistoryShow}
                         />}>
-              {' '}
-            </Route>{' '}
+            </Route>
             <Route
               exact
               path={HOME_PAGE_ROUTE_CLASS}
@@ -50,8 +50,7 @@ const App = () => {
                           historyShow={historyShow} 
                           setHistoryShow={setHistoryShow}
                         />}>
-              {' '}
-            </Route>{' '}
+            </Route>
             <Route
               exact
               path={SETTINGS_PAGE_ROUTE}
@@ -61,8 +60,7 @@ const App = () => {
                   value={value}
                 />
               }>
-              {' '}
-            </Route>{' '}
+            </Route>
             <Route
               exact
               path={SETTINGS_PAGE_ROUTE_CLASS}
@@ -72,11 +70,10 @@ const App = () => {
                   value={value}
                 />
               }>
-              {' '}
-            </Route>{' '}
-          </Routes>{' '}
-        </Suspense>{' '}
-      </ContainerApp>{' '}
+            </Route>
+          </Routes>
+        </Suspense>
+      </ContainerApp>
     </ErrorBoundary>
   )
 }

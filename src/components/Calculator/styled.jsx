@@ -5,7 +5,6 @@ width: 60%;
   display: grid;
   grid-template-rows: 1.5fr 8fr;
   padding: 0px 20px;
-
   &.active {
     width: 100%;
   }

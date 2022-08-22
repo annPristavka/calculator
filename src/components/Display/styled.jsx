@@ -11,7 +11,6 @@ export const Input = styled.div`
   width: 100%;
   padding: 10px;
   border: 1px solid grey;
-
   & p:last-child {
     font-size: 20px;
     opacity: 1;

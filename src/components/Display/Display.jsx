@@ -5,12 +5,12 @@ import { Input, P } from './styled'
 const Display = ({ value, express }) => {
 
   return (
-    <>
+    <React.Fragment>
       <Input>
         <P>{express}</P>
         <P>{value}</P>
       </Input>
-    </>
+    </React.Fragment>
   )
 }
 

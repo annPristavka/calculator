@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import colors from '../../theme'
 
-
-
 export const Container = styled.div `
   min-height: 542px;
   width: 100%;

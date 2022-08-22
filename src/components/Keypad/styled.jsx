@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 
 export const Key = styled.div`
-  //   display: grid;
-  //   grid-template-rows: 1.5fr 8fr;
-  //   padding: 0px 20px;
-
   display: grid;
   gap: 10px;
   align-items: center;
