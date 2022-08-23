@@ -24,7 +24,6 @@ class ErrorBoundary extends React.Component {
       return (
         <React.Fragment>
           <h1>
-            {' '}
             {this.state.errorName &&
               this.state.errorName.toString()}
           </h1>

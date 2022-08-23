@@ -51,16 +51,23 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
     if(expressArr.length === 1) setExpressArr([express * (-1)])
     if(expressArr.length === 3) {
       setExpressArr([...expressArr.slice(0,2),  -1 * expressArr[2]])
-      if(express.split(' ')[1] === '+')
-        setExpress(express.replace(express.split(' ')[1], '-'))
-        else {
-          setExpress(express.replace(express.split(' ')[1], '+'))
+
+      for(let i=express.length; i>0; i--){
+        if(express[i] === ' ' && express[i-1] === '+'){
+          setExpress(express.replace(express[i-1], '-'))
+          continue
         }
-    }else{
+        else if(express[i] === ' ' && express[i-1] === '-'){
+          setExpress(express.replace(express[i-1], '+'))
+          break
+        }
+      }
+
+    } else{
+      
       setExpress(-1 * currentNumber)
     }
     setCurrentNumber(-1 * currentNumber)
-   
   }
 
   const equalsClickHandler = () => {
