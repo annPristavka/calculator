@@ -7,6 +7,8 @@ width: 60%;
   padding: 0px 20px;
   &.active {
     width: 100%;
+    min-height: 500px;
+    padding: 0px;
   }
 `
 export const HistoryDiv = styled.div`
@@ -17,6 +19,6 @@ export const HistoryDiv = styled.div`
   &.active {
     border-left: 0px;
     width: 0%;
-    min-height: 530px;
+    min-height: 520px;
   }
 `

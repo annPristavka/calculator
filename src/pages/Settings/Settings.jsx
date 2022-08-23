@@ -6,6 +6,7 @@ import {
   Button,
   H3,
 } from './styled'
+import PropTypes from 'prop-types'
 import { theme } from '@/constants/themes'
 
 const Settings = ({ setValue, value }) => {
@@ -28,6 +29,12 @@ const Settings = ({ setValue, value }) => {
     </Container>
   )
 }
+
+Settings.propTypes = {
+  value: PropTypes.any,
+  setValue: PropTypes.func,
+}
+
 
 export default Settings
 

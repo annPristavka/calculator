@@ -9,6 +9,7 @@ import { allHistory } from '@/reducers/command'
 import { CalculatorC } from '@/utils/calculator'
 import { MainOperators, Operators } from '@/constants/token'
 import { getResult } from '@/utils/calculations'
+import PropTypes from 'prop-types'
 
 const Calculator = ({ historyShow, setHistoryShow }) => {
   const [sign, setSign] = useState('')
@@ -16,11 +17,6 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
   const [result, setResult] = useState(0)
   const [express, setExpress] = useState('')
   const [expressArr, setExpressArr] = useState('')
-
-  console.log('expressAttM', expressArr)
-  console.log('currentNumber', currentNumber)
-  console.log('result', result)
-  console.log('expressArrType', typeof expressArr)
 
   const dispatch = useDispatch()
   const calculator = useMemo(() => new CalculatorC(), [])
@@ -49,9 +45,9 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
 
   const oppositeSign = () => {
     if(expressArr.length === 1) setExpressArr([express * (-1)])
+    
     if(expressArr.length === 3) {
       setExpressArr([...expressArr.slice(0,2),  -1 * expressArr[2]])
-
       for(let i=express.length; i>0; i--){
         if(express[i] === ' ' && express[i-1] === '+'){
           setExpress(express.replace(express[i-1], '-'))
@@ -62,9 +58,7 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
           break
         }
       }
-
     } else{
-      
       setExpress(-1 * currentNumber)
     }
     setCurrentNumber(-1 * currentNumber)
@@ -121,15 +115,13 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
         break
 
       case Operators.COMMA:
-        if (currentNumber === 0) setExpress('0' + value)
-        else {
-          setCurrentNumber(currentNumber + String(value))
+        currentNumber === 0 ?  setExpress('0' + value)
+        : setCurrentNumber(currentNumber + String(value))
           setExpress(express + String(value))
-          if(expressArr.length === 1){
-            setExpressArr([expressArr+value])
-          }else
-          setExpressArr([...expressArr.slice(0,2), expressArr[expressArr.length-1]+value])
-        }
+          expressArr.length === 1
+            ? setExpressArr([expressArr+value])
+            : setExpressArr([...expressArr.slice(0,2), expressArr[expressArr.length-1]+value])
+
         break
 
       case Operators.CLEARALL:
@@ -211,6 +203,11 @@ const Calculator = ({ historyShow, setHistoryShow }) => {
       </HistoryDiv>
     </React.Fragment>
   )
+}
+
+Calculator.propTypes = {
+  historyShow: PropTypes.bool,
+  setHistoryShow: PropTypes.func,
 }
 
 export default Calculator
