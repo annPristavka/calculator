@@ -1,11 +1,17 @@
 import React from 'react'
-import { H3, Img, HistoryDiv } from './styled'
-import close from '@/assets/close.png'
 import { useSelector, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
-import { resetHistory } from '@/reducers/command'
 
-const History = ({setExpress, setCurrentNumber, setResult}) => {
+import close from '@/assets/close.png'
+import { resetHistory } from '@/store/reducers/command'
+
+import { Title, ImgClear, HistoryWrapper } from './styled'
+
+const History = ({
+  setExpress,
+  setCurrentNumber,
+  setResult,
+}) => {
   const dispatch = useDispatch()
   const history = useSelector(
     (store) => store.history.history,
@@ -20,22 +26,21 @@ const History = ({setExpress, setCurrentNumber, setResult}) => {
 
   return (
     <React.Fragment>
-      <H3>History</H3>
-      <Img src={close} onClick={clearHistory} />
-      <HistoryDiv>
+      <Title>History</Title>
+      <ImgClear src={close} onClick={clearHistory} />
+      <HistoryWrapper>
         {history.map((item, index) => (
-          <p key={index}>{item}</p>
+          <p key={`${item}${index}`}>{item}</p>
         ))}
-      </HistoryDiv>
+      </HistoryWrapper>
     </React.Fragment>
   )
 }
 
 History.propTypes = {
-  setExpress:PropTypes.func,
-  setCurrentNumber:PropTypes.func,
-  setResult:PropTypes.func,
+  setExpress: PropTypes.func,
+  setCurrentNumber: PropTypes.func,
+  setResult: PropTypes.func,
 }
-
 
 export default History

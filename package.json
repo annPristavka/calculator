@@ -2,6 +2,7 @@
     "name": "calculator",
     "version": "0.1.0",
     "private": false,
+    "homepage": "https://annPristavka.github.io/calculator",
     "dependencies": {
         "@craco/craco": "^6.4.5",
         "@reduxjs/toolkit": "^1.8.4",
@@ -34,9 +35,11 @@
     },
     "scripts": {
         "start": "craco start",
-        "build": "react-scripts build",
+        "build": "craco build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "predeploy": "yarn run build",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
@@ -89,6 +92,7 @@
         "eslint-plugin-react": "^7.30.1",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-standard": "^5.0.0",
+        "gh-pages": "^4.0.0",
         "html-webpack-plugin": "^5.5.0",
         "husky": "^8.0.1",
         "lint-staged": "^13.0.3",

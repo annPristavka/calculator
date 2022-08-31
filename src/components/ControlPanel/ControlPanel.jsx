@@ -1,22 +1,20 @@
 import React from 'react'
-import { Button } from './styled'
 import PropTypes from 'prop-types'
 
-const ControlPanel = ({setHistoryShow}) => {
+import { ButtonClear } from './styled'
 
+const ControlPanel = ({ setHistoryShow }) => {
   const handleHistory = () => {
-    setHistoryShow(prev => !prev)
+    setHistoryShow((prev) => !prev)
   }
+
   return (
-    <React.Fragment>
-      <Button className="control" onClick={handleHistory}>></Button>
-    </React.Fragment>
+    <ButtonClear onClick={handleHistory}>></ButtonClear>
   )
 }
 
 ControlPanel.propTypes = {
   setHistoryShow: PropTypes.func,
 }
-
 
 export default ControlPanel

@@ -1,80 +1,29 @@
-import React, { lazy, Suspense, useState } from 'react'
+import React, { lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
+import PageLayout from '@/components/PageLayout'
 import {
   HOME_PAGE_ROUTE,
   SETTINGS_PAGE_ROUTE,
   HOME_PAGE_ROUTE_CLASS,
   SETTINGS_PAGE_ROUTE_CLASS,
-} from '@/constants/index'
+} from '@/constants'
 
-import Loader from '@Components/Loader/index'
-import { ContainerApp } from './components'
-import ErrorBoundary from '@Components/ErrorBoundary/ErrorBoundary'
-
-const HomePage = lazy(() => import('@/pages/Home/index'))
-const HomeClass = lazy(() =>
-  import('@/pages/HomeClass/index'),
-)
-const SettingsClass = lazy(() =>
-  import('@/pages/SettingsClass/index'),
-)
-const Header = lazy(() => import('../Header/index'))
-const Settings = lazy(() =>
-  import('@/pages/Settings/index'),
-)
+const HomePage = lazy(() => import('@/pages/Home'))
+const HomeClass = lazy(() => import('@/pages/HomeClass'))
+const SettingsClass = lazy(() => import('@/pages/SettingsClass'))
+const Settings = lazy(() => import('@/pages/Settings'))
 
 const App = () => {
-  const [value, setValue] = useState('Light Theme')
-  const [historyShow, setHistoryShow] = useState(true)
   return (
-    <ErrorBoundary>
-      <ContainerApp>
-        <Suspense fallback={<Loader />}>
-          <Header />
-          <Routes>
-            <Route
-              exact
-              path={HOME_PAGE_ROUTE}
-              element={<HomePage 
-                          value={value} 
-                          historyShow={historyShow} 
-                          setHistoryShow={setHistoryShow}
-                        />}>
-            </Route>
-            <Route
-              exact
-              path={HOME_PAGE_ROUTE_CLASS}
-              element={<HomeClass 
-                          value={value} 
-                          historyShow={historyShow} 
-                          setHistoryShow={setHistoryShow}
-                        />}>
-            </Route>
-            <Route
-              exact
-              path={SETTINGS_PAGE_ROUTE}
-              element={
-                <Settings
-                  setValue={setValue}
-                  value={value}
-                />
-              }>
-            </Route>
-            <Route
-              exact
-              path={SETTINGS_PAGE_ROUTE_CLASS}
-              element={
-                <SettingsClass
-                  setValue={setValue}
-                  value={value}
-                />
-              }>
-            </Route>
-          </Routes>
-        </Suspense>
-      </ContainerApp>
-    </ErrorBoundary>
+    <PageLayout>
+      <Routes>
+        <Route path={HOME_PAGE_ROUTE} element={<HomePage />} />
+        <Route path={HOME_PAGE_ROUTE_CLASS} element={<HomeClass />} />
+        <Route path={SETTINGS_PAGE_ROUTE} element={<Settings />} />
+        <Route path={SETTINGS_PAGE_ROUTE_CLASS} element={<SettingsClass />} />
+      </Routes>
+    </PageLayout>
   )
 }
 

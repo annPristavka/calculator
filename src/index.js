@@ -6,7 +6,7 @@ import GlobalStyles from './globalStyles'
 import { Provider } from 'react-redux'
 import theme from './theme'
 import { ThemeProvider } from 'styled-components'
-import { store } from '@/store'
+import { store } from '@/store/index'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,7 +14,7 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         <Application />
         <GlobalStyles />
-      </ThemeProvider>{' '}
+      </ThemeProvider>
     </Provider>
   </BrowserRouter>,
   document.getElementById('root'),

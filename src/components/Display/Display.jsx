@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input, P } from './styled'
+
+import { Wrapper, Text } from './styled'
 
 const Display = ({ value, express }) => {
-
   return (
-    <React.Fragment>
-      <Input>
-        <P>{express}</P>
-        <P>{value}</P>
-      </Input>
-    </React.Fragment>
+    <Wrapper>
+      <Text>{express}</Text>
+      <Text>{value}</Text>
+    </Wrapper>
   )
 }
 

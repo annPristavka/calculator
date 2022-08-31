@@ -1,42 +1,42 @@
 import styled from 'styled-components'
-import colors from '../../theme'
+import theme from '@/theme'
 
-export const Container = styled.div `
-  min-height: 520px;
+export const Container = styled.div`
+  min-height: ${theme.length[13]}px;
   width: 100%;
-  padding: 10px;
+  padding: ${theme.padding[1]}px;
   background-color: ${(props) =>
-    props.bg === 'Light Theme'
-      ? ({ theme }) => theme.colors.white
-      : ({ theme }) => theme.colors.secondaryLight};
+    props.backgroundTheme === 'Light Theme'
+      ? theme.colors.white
+      : theme.colors.dark};
 `
-export const SettingsDiv = styled.div `
+export const WrapperContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   width: 40%;
-  height: 150px;
-  padding-left: 30px;
+  height: ${theme.length[14]}px;
+  padding-left: ${theme.padding[3]}px;
 `
 
-export const Select = styled.select `
-  width: 150px;
-  height: 32px;
+export const ChoiseTheme = styled.select`
+  width: ${theme.length[14]}px;
+  height: ${theme.length[15]}px;
 `
 
-export const Button = styled.button `
-  width: 150px;
-  height: 32px;
+export const Button = styled.button`
+  width: ${theme.length[14]}px;
+  height: ${theme.length[15]}px;
   color: black;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid grey;
+  font-size: ${theme.fontSizes[1]}px;
+  border-radius: ${theme.borderRadius[0]}px;
+  border: ${theme.border[0]}px solid ${theme.colors.grey};
   cursor: pointer;
-  font-family: 'Pathway Gothic One', sans-serif;
+  font-family: ${theme.font};
 `
 
-export const H3 = styled.h3 `
-  font-family: 'Pathway Gothic One', sans-serif;
-  font-size: 24px;
+export const Title = styled.h3`
+  font-family: ${theme.font};
+  font-size: ${theme.fontSizes[4]}px;
 `

@@ -1,41 +1,52 @@
-import React, { useContext, useState } from 'react'
-import {
-  SettingsDiv,
-  Container,
-  Select,
-  Button,
-  H3,
-} from './styled'
-import PropTypes from 'prop-types'
-import { theme } from '@/constants/themes'
+import React, { useState, useEffect } from 'react'
 
-const Settings = ({ setValue, value }) => {
+import { theme } from '@/constants'
+import {
+  localeStorageSetTheme,
+  localeStorageGetTheme,
+} from '@/utils/localeStorage'
+
+import {
+    WrapperContent,
+    Container,
+    ChoiseTheme,
+    Button,
+    Title,
+  } from './styled'
+
+const Settings = () => {
+  const [themeCurrent, setTheme] = useState()
+
   const handleChange = (e) => {
-    setValue(e.target.value)
+    localeStorageSetTheme(e.target.value)
+    setTheme(e.target.value)
   }
 
-  return (
-    <Container bg={value}>
-      <SettingsDiv>
-        <H3>Settings</H3>
+  const getTheme = () => {
+    const theme = localeStorageGetTheme()
+    setTheme(theme)
+  }
 
-        <Select value={value} onChange={handleChange}>
-          {theme.map((item, index) => (
-            <option key={item.id}>{item.value}</option>
+  useEffect(() => {
+    getTheme()
+    return () => getTheme()
+  }, [themeCurrent])
+
+  return (
+    <Container backgroundTheme={themeCurrent}>
+      <WrapperContent>
+        <Title>Settings</Title>
+        <ChoiseTheme
+          value={themeCurrent}
+          onChange={handleChange}>
+          {theme.map(({ id, value }) => (
+            <option key={id}>{value}</option>
           ))}
-        </Select>
+        </ChoiseTheme>
         <Button>Clear All History</Button>
-      </SettingsDiv>
+      </WrapperContent>
     </Container>
   )
 }
 
-Settings.propTypes = {
-  value: PropTypes.any,
-  setValue: PropTypes.func,
-}
-
-
 export default Settings
-
-//  background-color: ${({ theme }) => theme.spaces[4]}px;

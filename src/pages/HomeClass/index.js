@@ -1,11 +1,9 @@
 import React from 'react'
-import Calculator from '@Components/Calculator/index'
-import { CalcContainer } from './styled'
+import { Wrapper } from './styled'
 
 export default () => {
   return (
-    <CalcContainer>
-      <Calculator />
-    </CalcContainer>
+    <Wrapper>
+    </Wrapper>
   )
 }

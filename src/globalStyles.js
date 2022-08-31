@@ -1,14 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
 
-import theme from './theme'
-
-export default createGlobalStyle `
+export default createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    font-family: ${theme.font};
+    @import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&family=Space+Mono&display=swap');
   }
 
   html, body {

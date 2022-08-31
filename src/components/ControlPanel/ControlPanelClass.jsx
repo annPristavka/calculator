@@ -1,13 +1,9 @@
 import React from 'react'
-import { Button } from './styled'
+import { ButtonClear } from './styled'
 
 class ControlPanelClass extends React.Component {
   render() {
-    return (
-      <React.Fragment>
-        <Button className="control">></Button>
-      </React.Fragment>
-    )
+    return <ButtonClear className="control">></ButtonClear>
   }
 }
 

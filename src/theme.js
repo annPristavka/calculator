@@ -1,14 +1,12 @@
-import { css } from 'styled-components'
-
-const font = 'sans-serif'
+const font = "'Pathway Gothic One', sans-serif"
 
 // Color palette
 const black = '#000000'
 const white = '#ffffff'
-const error = '#c86464'
-const primary = '#c06c84'
-const secondary = '#6c5b7b'
-const secondaryLight = '#6a6b7b'
+const grey = '#DCDCDC'
+const darkGrey = '#696969'
+const dark = '#2b2b2b'
+const snow = '#FFFAFA'
 const gradientWhite = `linear-gradient(
   90deg,
   rgba(242, 242, 245, 1) 0%,
@@ -16,49 +14,33 @@ const gradientWhite = `linear-gradient(
   rgba(232, 249, 252, 1) 100%
 )`
 
-const boxShadows = [
-    'box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.75)',
+const length = [
+  500, 1000, 1200, 520, 14, 96, 300, 20, 400, 60, 16, 80,
+  170, 560, 150, 32,
 ]
 
-const size = {
-    xs: 550,
-    small: 768,
-    med: 992,
-    large: 1200,
-}
-
-const above = Object.keys(size).reduce((acc, label) => {
-    acc[label] = (...args) => css `
-    @media (min-width: ${size[label]}px) {
-      ${css(...args)}
-    }
-  `
-    return acc
-}, {})
-
-const below = Object.keys(size).reduce((acc, label) => {
-    acc[label] = (...args) => css `
-    @media (max-width: ${size[label]}px) {
-      ${css(...args)}
-    }
-  `
-    return acc
-}, {})
-
 export default {
-    above,
-    below,
-    boxShadows,
-    font,
-    spaces: [0, 4, 8, 16, 32, 64, 128],
-    fontSizes: [12, 14, 16, 20, 24, 32, 40, 56, 72, 80],
-    colors: {
-        primary,
-        secondary,
-        secondaryLight,
-        black,
-        white,
-        error,
-        gradientWhite,
-    },
+  font,
+  length,
+  spaces: [0, 4, 8, 16, 32, 64, 128],
+  fontSizes: [
+    12, 14, 16, 20, 24, 32, 40, 56, 72, 80, 17, 18,
+  ],
+  borderRadius: [5],
+  fontWeight: [500, 400],
+  padding: [20, 10, 25, 30],
+  letterSpacing: [0.3],
+  opacity: [1, 0.5],
+  gap: [10],
+  border: [1, 2, 3],
+  margin: [10],
+  colors: {
+    black,
+    white,
+    gradientWhite,
+    grey,
+    darkGrey,
+    dark,
+    snow,
+  },
 }

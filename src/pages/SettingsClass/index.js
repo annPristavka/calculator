@@ -1,16 +1,12 @@
 import React from 'react'
 import {
-  SettingsDiv,
+  WrapperContent,
   Container,
-  Select,
+  ChoiseTheme,
   Button,
-  H3,
+  Title,
 } from './styled'
-
-const theme = [
-  { id: 1, color: '#fff', value: 'Light Theme' },
-  { id: 2, color: '#000', value: 'Dark Theme' },
-]
+import { theme } from '@/constants/index'
 
 class SettingsClass extends React.Component {
   render() {
@@ -21,16 +17,18 @@ class SettingsClass extends React.Component {
     }
 
     return (
-      <Container bg={value}>
-        <SettingsDiv>
-          <H3> Settings </H3>
-          <Select value={value} onChange={handleChange}>
-            {theme.map((item, index) => (
-              <option key={item.id}> {item.value} </option>
+      <Container backgroundTheme={value}>
+        <WrapperContent>
+          <Title> Settings </Title>
+          <ChoiseTheme
+            value={value}
+            onChange={handleChange}>
+            {theme.map(({ id, value }) => (
+              <option key={id}>{value}</option>
             ))}
-          </Select>
+          </ChoiseTheme>
           <Button> Clear All History </Button>
-        </SettingsDiv>
+        </WrapperContent>
       </Container>
     )
   }

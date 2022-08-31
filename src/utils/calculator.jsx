@@ -1,5 +1,5 @@
 export class Command {
-  execute(value){}
+  execute(value) {}
 }
 
 export class CalculatorC {
@@ -13,17 +13,18 @@ export class CalculatorC {
     this.current = command.execute(this.current)
   }
 
-  getCurrent(){
+  getCurrent() {
     return this.current
   }
 
   setValue(value) {
     this.current = value
   }
-
 }
 
- class Add extends Command{
+export const calculator = new CalculatorC()
+
+class Add extends Command {
   constructor(x, y) {
     super()
     this.x = +x
@@ -35,7 +36,7 @@ export class CalculatorC {
   }
 }
 
-class Sub extends Command{
+class Sub extends Command {
   constructor(x, y) {
     super()
     this.x = +x
@@ -47,7 +48,7 @@ class Sub extends Command{
   }
 }
 
-class Mul extends Command{
+class Mul extends Command {
   constructor(x, y) {
     super()
     this.x = +x
@@ -59,7 +60,7 @@ class Mul extends Command{
   }
 }
 
-class Div extends Command{
+class Div extends Command {
   constructor(x, y) {
     super()
     this.x = +x
@@ -71,7 +72,7 @@ class Div extends Command{
   }
 }
 
-class ResDiv extends Command{
+class ResDiv extends Command {
   constructor(x, y) {
     super()
     this.x = +x
@@ -83,6 +84,4 @@ class ResDiv extends Command{
   }
 }
 
-
-export {Add, Sub, Mul, Div, ResDiv}
-
+export { Add, Sub, Mul, Div, ResDiv }

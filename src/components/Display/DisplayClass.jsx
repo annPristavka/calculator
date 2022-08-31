@@ -1,13 +1,14 @@
 import React from 'react'
-import { Input } from './styled'
+import { Wrapper, Text } from './styled'
 
 class DisplayClass extends React.Component {
   render() {
-    const { value } = this.props
+    const { value, express } = this.props
     return (
-      <React.Fragment>
-        <Input>{value}</Input>
-      </React.Fragment>
+      <Wrapper>
+        <Text>{express}</Text>
+        <Text>{value}</Text>
+      </Wrapper>
     )
   }
 }

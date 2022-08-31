@@ -5,10 +5,10 @@ const initialState = {
   history: [],
 }
 
-export const historyReducer = (
+export function historyReducer(
   state = initialState,
   action,
-) => {
+) {
   switch (action.type) {
     case ADD:
       return {
